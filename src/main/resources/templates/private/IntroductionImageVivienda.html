@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Introducción de fotos</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/IntroductionLocal.css">
+    <script src="/public/script/Principal.js"></script>
+    <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div>
+            <div class="component-container">
+                <span class="component-text"><a href="/"><span>INTEGRA</span></a></span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="redirectVivienda()">VIVENDA</a></li>
+                <li><a href="#" onclick="redirectLocal()">LOCALES</a></li>
+                <li><a href="#" onclick="redirectTerrenos()">TERRENOS</a></li>
+                <li><a href="#" onclick="redirectServicios()">SERVICIOS</a></li>
+                <li><a href="#" onclick="redirectContactos()">CONTACTO</a></li>
+            </ul>
+        </nav>
+    </header>
+<main>
+    <h1>Introducción de fotos</h1>
+    <div id="preview"></div>
+    <div class="containerc">
+        <div class="headerc">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                <path d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> <p>¡Buscar archivo para cargar!</p>
+        </div>
+        <label for="file" class="footerc">
+            <svg fill="#000000" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.331 6H8.5v20h15V14.154h-8.169z"></path><path d="M18.153 6h-.009v5.342H23.5v-.002z"></path></g></svg>
+            <p>Archivo no seleccionado</p>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z" stroke="#000000" stroke-width="2"></path> <path d="M19.5 5H4.5" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z" stroke="#000000" stroke-width="2"></path> </g></svg>
+        </label>
+        <input type="file" name="images" id="file" accept="image/*" required multiple onchange="previewImages()">
+        <button type="button" onclick="uploadImages()">Guardar</button>
+    </div>
+    <div id="loadingSpinner" style="display: none;">
+        <div class="loader" >
+            <div class="box box0">
+              <div></div>
+            </div>
+            <div class="box box1">
+              <div></div>
+            </div>
+            <div class="box box2">
+              <div></div>
+            </div>
+            <div class="box box3">
+              <div></div>
+            </div>
+            <div class="box box4">
+              <div></div>
+            </div>
+            <div class="box box5">
+              <div></div>
+            </div>
+            <div class="box box6">
+              <div></div>
+            </div>
+            <div class="box box7">
+              <div></div>
+            </div>
+            <div class="ground">
+              <div></div>
+            </div>
+          </div>
+    </div>
+
+</main>
+<footer class="component1-footer">
+    <div class="component1-container1">
+        <h2>Integra</h2>
+        <div class="component1-text">
+            <span>© 2023 Integra,</span>
+            <br />
+            <span>All Rights Reserved.</span>
+            <span class="component1-text04"></span>
+            <span></span>
+        </div>
+        <div class="component1-icon-group">
+            <svg viewBox="0 0 950.8571428571428 1024" class="component1-icon">
+                <path
+                        d="M925.714 233.143c-25.143 36.571-56.571 69.143-92.571 95.429 0.571 8 0.571 16 0.571 24 0 244-185.714 525.143-525.143 525.143-104.571 0-201.714-30.286-283.429-82.857 14.857 1.714 29.143 2.286 44.571 2.286 86.286 0 165.714-29.143 229.143-78.857-81.143-1.714-149.143-54.857-172.571-128 11.429 1.714 22.857 2.857 34.857 2.857 16.571 0 33.143-2.286 48.571-6.286-84.571-17.143-148-91.429-148-181.143v-2.286c24.571 13.714 53.143 22.286 83.429 23.429-49.714-33.143-82.286-89.714-82.286-153.714 0-34.286 9.143-65.714 25.143-93.143 90.857 112 227.429 185.143 380.571 193.143-2.857-13.714-4.571-28-4.571-42.286 0-101.714 82.286-184.571 184.571-184.571 53.143 0 101.143 22.286 134.857 58.286 41.714-8 81.714-23.429 117.143-44.571-13.714 42.857-42.857 78.857-81.143 101.714 37.143-4 73.143-14.286 106.286-28.571z"
+                ></path></svg
+            ><svg viewBox="0 0 877.7142857142857 1024" class="component1-icon2">
+            <path
+                    d="M585.143 512c0-80.571-65.714-146.286-146.286-146.286s-146.286 65.714-146.286 146.286 65.714 146.286 146.286 146.286 146.286-65.714 146.286-146.286zM664 512c0 124.571-100.571 225.143-225.143 225.143s-225.143-100.571-225.143-225.143 100.571-225.143 225.143-225.143 225.143 100.571 225.143 225.143zM725.714 277.714c0 29.143-23.429 52.571-52.571 52.571s-52.571-23.429-52.571-52.571 23.429-52.571 52.571-52.571 52.571 23.429 52.571 52.571zM438.857 152c-64 0-201.143-5.143-258.857 17.714-20 8-34.857 17.714-50.286 33.143s-25.143 30.286-33.143 50.286c-22.857 57.714-17.714 194.857-17.714 258.857s-5.143 201.143 17.714 258.857c8 20 17.714 34.857 33.143 50.286s30.286 25.143 50.286 33.143c57.714 22.857 194.857 17.714 258.857 17.714s201.143 5.143 258.857-17.714c20-8 34.857-17.714 50.286-33.143s25.143-30.286 33.143-50.286c22.857-57.714 17.714-194.857 17.714-258.857s5.143-201.143-17.714-258.857c-8-20-17.714-34.857-33.143-50.286s-30.286-25.143-50.286-33.143c-57.714-22.857-194.857-17.714-258.857-17.714zM877.714 512c0 60.571 0.571 120.571-2.857 181.143-3.429 70.286-19.429 132.571-70.857 184s-113.714 67.429-184 70.857c-60.571 3.429-120.571 2.857-181.143 2.857s-120.571 0.571-181.143-2.857c-70.286-3.429-132.571-19.429-184-70.857s-67.429-113.714-70.857-184c-3.429-60.571-2.857-120.571-2.857-181.143s-0.571-120.571 2.857-181.143c3.429-70.286 19.429-132.571 70.857-184s113.714-67.429 184-70.857c60.571-3.429 120.571-2.857 181.143-2.857s120.571-0.571 181.143 2.857c70.286 3.429 132.571 19.429 184 70.857s67.429 113.714 70.857 184c3.429 60.571 2.857 120.571 2.857 181.143z"
+            ></path></svg
+        ><svg viewBox="0 0 602.2582857142856 1024" class="component1-icon4">
+            <path
+                    d="M548 6.857v150.857h-89.714c-70.286 0-83.429 33.714-83.429 82.286v108h167.429l-22.286 169.143h-145.143v433.714h-174.857v-433.714h-145.714v-169.143h145.714v-124.571c0-144.571 88.571-223.429 217.714-223.429 61.714 0 114.857 4.571 130.286 6.857z"
+            ></path>
+        </svg>
+        </div>
+    </div>
+
+    <div class="component1-links-container">
+        <div class="component1-container2">
+            <span class="component1-text06">Navegación</span>
+            <span class="component1-text07"><a href="/">Inicio</a></span>
+            <span class="component1-text08"><a href="/#descripcion">Quienes somos</a></span>
+            <span class="component1-text09"><a href ="#" onclick="redirectVivienda()">Viviendas</a></span>
+            <span class="component1-text31"><a href ="#" onclick="redirectTerrenos()">Terrenos</a></span>
+            <span class="component1-text32"><a href="/public/Servicios">Servicios</a></span>
+            <span class="component1-text31"><a href ="#" onclick="redirectLocal()">Locales</a></span>
+
+        </div>
+        <div class="component1-container5">
+            <div class="component1-container6">
+                <span class="component1-text11">Aviso Legal</span>
+                <span class="component1-text12">Política de Privacidad</span>
+                <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
+            </div>
+        </div>
+    </div>
+
+
+</footer>
+<div id="loginPopup" class="popup">
+    <div class="popup-content">
+        <!-- Форма входа -->
+        <form action="" class="form_main">
+            <p class="heading">Login</p>
+            <div class="inputContainer">
+                <svg class="inputIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2e2e2e" viewBox="0 0 16 16">
+                <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"></path>
+                </svg>
+            <input type="text" class="inputField" id="email" placeholder="Username">
+            </div>
+            
+        <div class="inputContainer">
+            <svg class="inputIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2e2e2e" viewBox="0 0 16 16">
+            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
+            </svg>
+            <input type="password" class="inputField" id="password" placeholder="Password">
+        </div>
+                      
+        <a href="#" onclick="logoutUser()">Salir</a>
+        <button id="button" onclick="authenticateUser()">Entrar</button>
+        </form>
+        
+        <!-- Добавьте кнопку закрытия окна -->
+        <span class="close" onclick="closeLoginPopup()">&times;</span>
+    </div>
+</div>
+<script>
+
+
+
+    
+    function extractTitleFromURL() {
+      const path = window.location.pathname;
+      const parts = path.split("/");
+      const title = parts[parts.length - 1];
+      console.log("Título desde la URL:", title);
+      return title;
+    }
+    function previewImages() {
+        const fileInput = document.getElementById("file");
+        const files = fileInput.files;
+
+        if (files.length === 0) {
+            return;
+        }
+
+        const previewDiv = document.getElementById("preview");
+        previewDiv.innerHTML = "";
+
+        for (const file of files) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = document.createElement("img");
+                img.src = event.target.result;
+                img.style.maxWidth = "200px";
+                img.style.maxHeight = "200px";
+                previewDiv.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function uploadImages() {
+        const fileInput = document.getElementById("file");
+        const files = fileInput.files;
+        const id = extractTitleFromURL();
+        const loadingSpinner = document.getElementById("loadingSpinner");
+
+        if (files.length === 0) {
+            alert("¡Seleccione archivos para cargar!");
+            return;
+        }
+
+        // Показать спиннер перед началом загрузки
+        loadingSpinner.style.display = "block";
+
+        const token = localStorage.getItem("token");
+        if (token) {
+            const headers = new Headers();
+            headers.append("Authorization", `Bearer ${token}`);
+
+            const formData = new FormData();
+
+            for (const file of files) {
+                formData.append("images", file);
+            }
+
+            formData.append("id", id);
+
+            fetch(`/private/Viviendacreateimage/${id}`, {
+                method: "POST",
+                headers: headers,
+                body: formData,
+            })
+                .then((response) => {
+                    // Скрыть спиннер после завершения загрузки
+                    loadingSpinner.style.display = "none";
+
+                    if (response.ok) {
+                        alert("¡Todos los archivos se han cargado correctamente en el servidor!");
+                        window.location.href = "/"; // Redirigir a la página principal
+                    } else {
+                        throw new Error("¡No todos los archivos se cargaron correctamente!");
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                    alert("Se produjo un error: " + error.message);
+                    // Скрыть спиннер в случае ошибки
+                    loadingSpinner.style.display = "none";
+                });
+        } else {
+            alert("El token no está presente. Por favor, inicie sesión.");
+        }
+    }
+
+    document.getElementById("images").addEventListener("change", previewImages);
+</script>
+</body>
+</html>
