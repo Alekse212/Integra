@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1774"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="flechai2.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1776"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.67081229"
+     inkscape:cx="396.53418"
+     inkscape:cy="442.00144"
+     inkscape:window-width="1362"
+     inkscape:window-height="1003"
+     inkscape:window-x="756"
+     inkscape:window-y="57"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1771">
+      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color: black;">
+            <animate attributeName="stop-color" values="black; grey; black" dur="4s" repeatCount="indefinite"></animate>
+          </stop>
+          <stop offset="50%" style="stop-color: black;">
+            <animate attributeName="stop-color" values="black; grey; black" dur="4s" repeatCount="indefinite"></animate>
+          </stop>
+          <stop offset="100%" style="stop-color: black;">
+        </stop>
+      </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:url(#gradient);stroke-width:0.126621"
+       d="m 52.951041,61.140964 -0.73536,-0.17 -0.49023,-0.16481 -0.49025,-0.1648 -13.25194,-7.9785 -13.251949,-7.97849 -0.385261,-0.53963 -0.385264,-0.53963 -0.0025,-1.03019 -0.0025,-1.03019 0.453307,-0.59552 0.453307,-0.59553 13.43154,-8.050955 13.43153,-8.050949 0.81707,-0.183746 0.81705,-0.183743 h 1.47453 1.47452 l 1.06978,0.316316 1.06977,0.316315 1.64562,1.015529 1.6456,1.015529 0.33176,0.390435 0.33174,0.390436 0.2071,0.602024 0.20711,0.602028 -0.18707,0.603958 -0.18706,0.60396 -0.35727,0.456653 -0.35726,0.456655 -9.90139,5.960775 -9.90138,5.96078 9.819,5.91097 9.81901,5.91096 0.33646,0.3434 0.33648,0.34339 0.28028,0.58297 0.28027,0.58297 -0.0978,0.62853 -0.0977,0.62853 -0.40495,0.53108 -0.40497,0.53107 -1.67179,1.03169 -1.67179,1.03169 -1.04833,0.30987 -1.04834,0.30986 -1.33255,0.0291 -1.33254,0.0291 -0.73537,-0.17 z"
+       id="path924" />
+  </g>
+</svg>
