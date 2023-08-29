@@ -22,6 +22,7 @@ public class Terrenos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String ref;
     private String title;
     private Date date;
     @Column(name = "descripcion", columnDefinition = "LONGTEXT")
@@ -29,8 +30,9 @@ public class Terrenos {
     private Integer precio;
     private String cuidad;
     private Integer tamano;
+    private Integer ibi;
     private Urbanizable urbanizable;
     private String previewImage;
-    private List<String> imageViviendas;
     private Integer introduce;
+    private Boolean visibility;
 }

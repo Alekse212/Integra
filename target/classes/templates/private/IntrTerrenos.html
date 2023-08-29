@@ -37,6 +37,9 @@
             <label for="precio">Precio:</label>
             <input type="number" step="0.01" id="precio" name="precio" required><br>
 
+            <label for="ibi">IBI:</label>
+            <input type="number" step="0.01" id="ibi" name="ibi" required><span>/año</span><br>
+
             <label for="cuidad">Cuidad:</label>
             <input type="text" id="cuidad" name="cuidad" required><br>
 
@@ -49,7 +52,16 @@
                 <option value="NoUrbanizable">NoUrbanizable</option>
             </select>
 
-
+            <div class="visibility">
+                <label>Visibility</label>
+                <div class="toggle-button-cover">
+                    <div class="button r" id="button-3">
+                        <input type="checkbox" class="checkbox" id="visibility">
+                        <div class="knobs"></div>
+                        <div class="layer"></div>
+                    </div>
+                </div>
+            </div>
             <button type="submit">Introducir</button>
         </form>
     </section>
@@ -94,8 +106,8 @@
       </div>
       <div class="component1-container5">
           <div class="component1-container6">
-              <span class="component1-text11">Aviso Legal</span>
-              <span class="component1-text12">Política de Privacidad</span>
+              <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+              <span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span>
               <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
           </div>
       </div>
@@ -145,7 +157,8 @@
     // Оставьте остальной JavaScript-код без изменений
     document.getElementById('casaForm').addEventListener('submit', function (event) {
       event.preventDefault();
-
+        const url = `/private/Terrenos/create`;
+    var visibilityCheckbox = document.getElementById('visibility');
       const formData = {
         title: document.getElementById('title').value,
         descripcion: document.getElementById('descripcion').value,
@@ -153,6 +166,8 @@
         cuidad: document.getElementById('cuidad').value,
         tamano: parseFloat(document.getElementById('tamano').value),
         urbanizable: document.getElementById('urbanizable').value,
+        ibi: parseFloat(document.getElementById('ibi').value),
+        visibility: visibilityCheckbox.checked
       };
 
       // Если токен есть, добавьте его в заголовок axios
@@ -160,19 +175,24 @@
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       }
 
-      axios.post('/private/Terrenos/create', formData)
-        .then(function (response) {
-            const viviendaId = response.data;
-            console.log('Данные успешно добавлены в базу данных. ID:', viviendaId);
-            alert('Данные успешно добавлены в базу данных!');
-            document.getElementById('casaForm').reset();
-            redirectToCasas(viviendaId);
-    })
-        .catch(function (error) {
-          console.error('Ошибка при добавлении данных:', error);
-          alert('Ошибка при добавлении данных!');
-        });
-    });
+     if (token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }
+
+  axios.post(url, formData)
+  .then(function (response) {
+    const viviendaId = response.data;
+    console.log('Данные успешно добавлены в базу данных. ID:', viviendaId);
+    alert('Данные успешно добавлены в базу данных!');
+    document.getElementById('casaForm').reset();
+    redirectToCasas(viviendaId);
+  })
+  .catch(function (error) {
+    console.error('Ошибка при добавлении данных:', error);
+    alert('Ошибка при добавлении данных!');
+  });
+});
+
 
     function isTokenExpired(token) {
       const tokenExpiration = new Date(parseInt(JSON.parse(atob(token.split('.')[1])).exp) * 1000);

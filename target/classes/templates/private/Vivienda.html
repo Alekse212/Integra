@@ -44,13 +44,18 @@
             </select>
             <select name="opcion" id="opcion">
                 <option value="" disabled selected>Opcion</option>
-                <option value="Comprar" selected>Comprar</option>
+                <option value="Venta" selected>Venta</option>
                 <option value="Alquiler">Alquiler</option>
             </select>
             <select name="estado" id="estado">
                 <option value="" disabled selected>Estado</option>
                 <option value="" selected></option>
                 <option th:each="estado : ${T(com.example.Integra.models.enumeration.Estado).values()}" th:value="${estado}" th:text="${estado.getDisplayName()}"></option>
+            </select>
+            <select name="plantas" id="plantas">
+                <option value="" disabled selected>Planta</option>
+                <option value="" selected></option>
+                <option th:each="plantas : ${T(com.example.Integra.models.enumeration.Plantas).values()}" th:value="${plantas}" th:text="${plantas.getDisplayName()}"></option>
             </select>
             <button type="button" id="filterButton">Filtrar</button>
             <button type="button" id="resetFiltersButton">Restablecer</button>
@@ -73,18 +78,19 @@
         <div th:each="vivienda : ${vivienda}" class="Vivienda-block">
             <a href="#" th:data-id="${vivienda.id}" onclick="redirectCard(this.getAttribute('data-id'))">
                 <div class="none_decor">
-                    <div class="previewimg">
-                        <img class="card-preview-img"  th:src="@{/public/imagesVivienda/{imageName}(imageName=${vivienda.previewImage})}" />
+                    <img class="card-preview-img"  th:src="@{/public/imagesVivienda/{imageName}(imageName=${vivienda.previewImage})}" />
+                    <div class="card-precio">
+                        <span th:text="${vivienda.precio}">50000</span><span>€</span></br>
                     </div>
-                    <h2 th:text="${vivienda.title}">Título</h2>
+                    <h2 th:text="${vivienda.title}">Titulo</h2>
                     <div class="card-img-top">
                         <div class="card-cuidad">
                             <img src="/public/images/image/city.png"alt="">
-                            <span th:text="${vivienda.cuidad}">Guardama del Segura</span>
+                            <span th:text="${vivienda.cuidad}">Guardama del Segura</span></br>
                         </div>
                         <div class="card-bed">
                             <img src="/public/images/image/bed.png" alt="">
-                            <span th:text="${vivienda.habitaciones}">2</span>
+                            <span th:text="${vivienda.habitaciones}">2</span></br>
                         </div>
                         <div class="card-bath">
                             <img src="/public/images/image/bath.png" alt=""></span>
@@ -92,12 +98,9 @@
                         </div>
                         <div class="card-tamano">
                             <img src="/public/images/image/Plan.png" alt="">
-                            <span><span th:text="${vivienda.tamano}">200</span><span>m²</span></span>
+                            <span><span th:text="${vivienda.tamano}">200</span><span>m<sup>2</sup></span></span>
                         </div>
-                        <div class="card-precio">
-                            <img src="/public/images/image/euro.png" alt="">
-                            <span th:text="${vivienda.precio}">20000</span>
-                        </div>
+
                     </div>
                 </div>
             </a>
@@ -145,8 +148,8 @@
         </div>
         <div class="component1-container5">
             <div class="component1-container6">
-                <span class="component1-text11">Aviso Legal</span>
-                <span class="component1-text12">Política de Privacidad</span>
+                <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+                <span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span>
                 <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
             </div>
         </div>
@@ -213,7 +216,7 @@
 
     // Redirigir a la página sin parámetros de filtrado
     const token = localStorage.getItem('token');
-    window.location.href = `/private/Vivienda/${encodeURIComponent(id)}?token=${encodeURIComponent(token)}`;
+    window.location.href = `/private/Vivienda?token=${encodeURIComponent(token)}`;
 }
         function populateFilterFields() {
         // Obtener los valores de los parámetros de la URL
@@ -231,6 +234,7 @@
         document.querySelector('select[name="type"]').value = urlParams.get("type") || "";
         document.querySelector('select[name="opcion"]').value = urlParams.get("opcion") || "";
         document.querySelector('select[name="estado"]').value = urlParams.get("estado") || "";
+        document.querySelector('select[name="plantas"]').value = urlParams.get("plantas") || "";
 
     }
 
@@ -266,6 +270,8 @@
             const opcionFilter = opcionSelect.value;
             const estadoSelect = document.querySelector('select[name="estado"]');
             const estadoFilter = estadoSelect.value;
+            const plantasSelect = document.querySelector('select[name="plantas"]');
+            const plantasFilter = plantasSelect.value;
             // Construir la URL con los filtros
             let filteredUrl = `/private/Vivienda?token=${encodeURIComponent(token)}`;
             // Convertir los valores a números, verificar si es NaN y establecer valores predeterminados
@@ -321,6 +327,9 @@
             if (estadoFilter !== '') {
                 filteredUrl += `&estado=${encodeURIComponent(opcionFilter)}`;
             }
+            if (plantasFilter !== '') {
+                filteredUrl += `&plantas=${encodeURIComponent(plantasFilter)}`;
+            }
 
             document.querySelector('input[name="cuidad"]').value = cuidadFilter;
             document.querySelector('input[name="minPrice"]').value = minPriceFilter;
@@ -333,6 +342,7 @@
             document.querySelector('select[name="type"]').value = typeFilter;
             document.querySelector('select[name="opcion"]').value = opcionFilter;
             document.querySelector('select[name="estado"]').value = estadoFilter;
+            document.querySelector('select[name="plantas"]').value = plantasFilter;
 
 
             // Redirigir a la página con los filtros aplicados

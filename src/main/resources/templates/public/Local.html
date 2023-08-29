@@ -43,9 +43,9 @@
                 </select>
                 <select name="opcion" id="opcion">
                     <option value="" disabled selected>Opcion</option>
-                    <option value="Comprar" selected>Comprar</option>
+                    <option value="Venta" selected>Venta</option>
                     <option value="Alquiler">Alquiler</option>
-                    <option value="Traspasa">Traspasa</option>
+                    <option value="Traspaso">Traspaso</option>
                 </select>
                 <button type="button" id="filterButton">Filtrar</button>
                 <button type="button" id="resetFiltersButton">Restablecer</button>
@@ -55,10 +55,11 @@
     <div class="Local">
 
         <div th:each="local : ${local}" class="Local-block">
-            <a th:href="@{/public/Local/{id}(id=${local.id})}">
+            <a href="#" th:data-id="${local.id}" onclick="redirectCardLoc(this.getAttribute('data-id'))">
                 <div class="none_decor">
-                    <div class="previewimg">
-                        <img class="card-preview-img"  th:src="@{/public/imagesVivienda/{imageName}(imageName=${local.previewImage})}" />
+                    <img class="card-preview-img"  th:src="@{/public/imagesVivienda/{imageName}(imageName=${local.previewImage})}" />
+                    <div class="card-precio">
+                        <span th:text="${local.precio}">20000</span><span>€</span></br>
                     </div>
                     <h2 th:text="${local.titulo}">Titulo</h2>
                     <div class="card-img-top">
@@ -74,10 +75,7 @@
                             <img src="/public/images/image/Plan.png" alt="">
                             <span><span th:text="${local.tamano}">200</span><span>m<sup>2</sup></span></span>
                         </div>
-                        <div class="card-precio">
-                            <img src="/public/images/image/euro.png" alt="">
-                            <span th:text="${local.precio}">20000</span></br>
-                        </div>
+
                     </div>
                 </div>
             </a>
@@ -124,8 +122,8 @@
         </div>
         <div class="component1-container5">
             <div class="component1-container6">
-                <span class="component1-text11">Aviso Legal</span>
-                <span class="component1-text12">Política de Privacidad</span>
+                <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+                <span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span>
                 <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
             </div>
         </div>
@@ -190,7 +188,7 @@
 
     // Перенаправляем на страницу без параметров фильтрации
     const token = localStorage.getItem('token');
-    window.location.href = `/public/Local/`;
+    window.location.href = `/public/Local`;
 }
         function populateFilterFields() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -202,7 +200,7 @@
         document.querySelector('input[name="tamanoMax"]').value = urlParams.get("tamanoMax") || "";
         document.querySelector('input[name="bano"]').value = urlParams.get("bano") || "";
         document.querySelector('input[name="fechadeintroduccion"]').value = urlParams.get("fechadeintroduccion") || "";
-        
+        document.querySelector('select[name="tipo"]').value = urlParams.get("tipo") || "";
         document.querySelector('select[name="opcion"]').value = urlParams.get("opcion") || "";
 
     }
@@ -220,8 +218,8 @@
             const fechadeintroduccionInput = document.querySelector('input[name="fechadeintroduccion"]');
             const estadoSelect = document.querySelector('select[name="estado"]');
             const fechadeintroduccionFilter = fechadeintroduccionInput.value;
-            const typeSelect = document.querySelector('select[name="tipo"]');
-            const typeFilter = typeSelect.value;
+            const tipoSelect = document.querySelector('select[name="tipo"]');
+            const tipoFilter = tipoSelect.value;
             const opcionSelect = document.querySelector('select[name="opcion"]');
             const opcionFilter = opcionSelect.value;
             // Строим URL с фильтрами
@@ -263,8 +261,8 @@
             if (fechadeintroduccionFilter.trim() !== '') {
                 filteredUrl += `&fechadeintroduccion=${encodeURIComponent(fechadeintroduccionFilter)}`;
             }
-            if (typeFilter !== '') {
-                filteredUrl += `&type=${encodeURIComponent(typeFilter)}`;
+            if (tipoFilter !== '') {
+                filteredUrl += `&tipo=${encodeURIComponent(tipoFilter)}`;
             }
             if (opcionFilter !== '') {
                 filteredUrl += `&opcion=${encodeURIComponent(opcionFilter)}`;
@@ -277,7 +275,7 @@
             document.querySelector('input[name="tamanoMax"]').value = tamanoMaxFilter;
             document.querySelector('input[name="bano"]').value = banoFilter;
             document.querySelector('input[name="fechadeintroduccion"]').value = fechadeintroduccionFilter;
-            document.querySelector('select[name="tipo"]').value = typeFilter;            
+            document.querySelector('select[name="tipo"]').value = tipoFilter;
             document.querySelector('select[name="opcion"]').value = opcionFilter;
 
 

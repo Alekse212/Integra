@@ -27,14 +27,9 @@
     <h1>Introducción de fotos</h1>
     <div id="preview"></div>
     <div class="containerc">
-        <div class="headerc">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
-                <path d="M7 10V9C7 6.23858 9.23858 4 12 4C14.7614 4 17 6.23858 17 9V10C19.2091 10 21 11.7909 21 14C21 15.4806 20.1956 16.8084 19 17.5M7 10C4.79086 10 3 11.7909 3 14C3 15.4806 3.8044 16.8084 5 17.5M7 10C7.43285 10 7.84965 10.0688 8.24006 10.1959M12 12V21M12 12L15 15M12 12L9 15" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> <p>¡Buscar archivo para cargar!</p>
-        </div>
+
         <label for="file" class="footerc">
-            <svg fill="#000000" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M15.331 6H8.5v20h15V14.154h-8.169z"></path><path d="M18.153 6h-.009v5.342H23.5v-.002z"></path></g></svg>
-            <p>Archivo no seleccionado</p>
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z" stroke="#000000" stroke-width="2"></path> <path d="M19.5 5H4.5" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z" stroke="#000000" stroke-width="2"></path> </g></svg>
+            Elige imagen
         </label>
         <input type="file" name="images" id="file" accept="image/*" required multiple onchange="previewImages()">
         <button type="button" onclick="uploadImages()">Guardar</button>
@@ -112,8 +107,8 @@
         </div>
         <div class="component1-container5">
             <div class="component1-container6">
-                <span class="component1-text11">Aviso Legal</span>
-                <span class="component1-text12">Política de Privacidad</span>
+                <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+                <span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span>
                 <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
             </div>
         </div>
@@ -150,20 +145,9 @@
 </div>
 <script>
 
-
-
-
-    function extractTitleFromURL() {
-      const path = window.location.pathname;
-      const parts = path.split("/");
-      const title = parts[parts.length - 1];
-      console.log("Título desde la URL:", title);
-      return title;
-    }
     function previewImages() {
         const fileInput = document.getElementById("file");
         const files = fileInput.files;
-
         if (files.length === 0) {
             return;
         }
@@ -174,44 +158,74 @@
         for (const file of files) {
             const reader = new FileReader();
             reader.onload = function(event) {
+                const imageContainer = document.createElement("div");
+                imageContainer.className = "image-container";
+
                 const img = document.createElement("img");
                 img.src = event.target.result;
                 img.style.maxWidth = "200px";
                 img.style.maxHeight = "200px";
-                previewDiv.appendChild(img);
+
+                const radioInput = document.createElement("input");
+                radioInput.type = "radio";
+                radioInput.name = "selectedImage"; // All radio buttons should have the same name
+
+                imageContainer.appendChild(img);
+                imageContainer.appendChild(radioInput);
+
+                previewDiv.appendChild(imageContainer);
             };
             reader.readAsDataURL(file);
         }
     }
 
-    function uploadImages() {
-        const fileInput = document.getElementById("file");
-        const files = fileInput.files;
-        const id = extractTitleFromURL();
-        const loadingSpinner = document.getElementById("loadingSpinner");
 
-        if (files.length === 0) {
-            alert("¡Seleccione archivos para cargar!");
-            return;
+        function extractTitleFromURL() {
+          const path = window.location.pathname;
+          const parts = path.split("/");
+          const title = parts[parts.length - 1];
+          console.log("Título desde la URL:", title);
+          return title;
         }
 
-        // Показать спиннер перед началом загрузки
-        loadingSpinner.style.display = "block";
+ function uploadImages() {
+    const fileInput = document.getElementById("file");
+    const files = fileInput.files;
+    const id = extractTitleFromURL();
+    const loadingSpinner = document.getElementById("loadingSpinner");
 
-        const token = localStorage.getItem("token");
-        if (token) {
-            const headers = new Headers();
-            headers.append("Authorization", `Bearer ${token}`);
+    if (files.length === 0) {
+        alert("¡Seleccione archivos para cargar!");
+        return;
+    }
 
-            const formData = new FormData();
+    const selectedImageRadio = document.querySelector('input[name="selectedImage"]:checked');
 
-            for (const file of files) {
-                formData.append("images", file);
-            }
+    if (!selectedImageRadio) {
+        alert("¡Seleccione una imagen principal!");
+        return;
+    }
 
-            formData.append("id", id);
+    const selectedImageFile = selectedImageRadio.parentNode.querySelector('img').src;
 
-            fetch(`/private/Localcreateimage/${id}`, {
+    // Показать спиннер перед началом загрузки
+    loadingSpinner.style.display = "block";
+
+    const token = localStorage.getItem("token");
+    if (token) {
+        const headers = new Headers();
+        headers.append("Authorization", `Bearer ${token}`);
+
+        const formData = new FormData();
+
+        for (const file of files) {
+            formData.append("images", file);
+        }
+
+        formData.append("id", id);
+        formData.append("selectedImageFile", selectedImageFile);
+
+            fetch(`/private/Localcreateimages/${id}`, {
                 method: "POST",
                 headers: headers,
                 body: formData,
@@ -238,7 +252,6 @@
         }
     }
 
-    document.getElementById("images").addEventListener("change", previewImages);
 </script>
 </body>
 </html>

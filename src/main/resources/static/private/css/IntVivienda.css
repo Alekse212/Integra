@@ -105,7 +105,7 @@ form label {
 form input,
 form textarea,
 form select {
-  width: 100%;
+  width: 80%;
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -415,4 +415,133 @@ footer {
 
 .extraDiv{
     display: flex;
+    flex-flow: wrap;
+}
+
+.toggle-button-cover {
+    display: table-cell;
+    position: relative;
+    width: 100px;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.button-cover {
+  height: 100px;
+  margin: 20px;
+  background-color: #fff;
+  box-shadow: 0 10px 20px -8px #c5d6d6;
+  border-radius: 4px;
+}
+
+.button-cover:before {
+  counter-increment: button-counter;
+  content: counter(button-counter);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #d7e3e3;
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px;
+}
+
+.button-cover,
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  position: relative;
+  top: 50%;
+  width: 90px;
+  height: 38px;
+  margin: -20px auto 0 auto;
+  overflow: hidden;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #524949;
+  transition: 1s ease all;
+  z-index: 1;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 12px;
+}
+
+#button-3 .knobs:before {
+  content: "ON";
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 23px;
+  height: 11px;
+  color: rgb(22, 21, 21);
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  background-color: rgb(240, 235, 233);
+  border-radius: 30%;
+  transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#button-3 .checkbox:active + .knobs:before {
+  width: 36px;
+  border-radius: 2px;
+}
+
+#button-3 .checkbox:checked:active + .knobs:before {
+  margin-left: -26px;
+}
+
+#button-3 .checkbox:checked + .knobs:before {
+  content: "OFF";
+  left: 50px;
+  background-color: #f44336;
+  color: white;
+}
+
+#button-3 .checkbox:checked ~ .layer {
+  background-color: #524949;
+}
+
+
+.visibility{
+    display: flex;
+        flex-direction: row;
+        align-items: center;
+}
+
+.visibility label{
+    color: #3c3c3cad;
+    margin-right: 20px;
 }

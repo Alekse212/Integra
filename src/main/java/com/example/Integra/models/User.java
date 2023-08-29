@@ -23,7 +23,7 @@ public class User implements UserDetails {
     private String email;
     private String name;
     private String lastname;
-    private Integer movil;
+    private String movil;
 
 
 

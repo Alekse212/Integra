@@ -4,6 +4,6 @@ import com.example.Integra.models.Vivienda;
 
 public enum Opcion {
     Alquiler,
-    Comprar,
-    Traspasa
+    Venta,
+    Traspaso,
 }

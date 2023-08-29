@@ -21,6 +21,7 @@ public class Vivienda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String ref;
     private String title;
     @Column(name = "descripcion", columnDefinition = "LONGTEXT")
     private String descripcion;
@@ -37,10 +38,13 @@ public class Vivienda {
     private Integer ibi;
     private Integer comunidad;
     private String previewImage;
+    private Plantas planta;
+    private Boolean visibility;
     private List<Extras> extras;
     private Date fechadeintroduccion;
-    private List<String> imageViviendas;
     private Integer introduce;
     private Orientacion orientacion;
     private Coloborador coloborador;
+    private TipoCalefacionAgua tipoCalefacionAgua;
+    private TipoCalefacion tipoCalefacion;
 }

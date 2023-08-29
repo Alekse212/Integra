@@ -4,125 +4,104 @@
     <meta charset="UTF-8">
     <title>Property Card Example</title>
     <link id="dynamicCSS" rel="stylesheet" type="text/css" href="/public/css/NegocioCard.css">
-    <link id="dynamic" rel="stylesheet" type="text/css" href="NegocioCard.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <script src="/public/script/Principal.js"></script>
     <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <div>
-            <div class="component-container">
-                <span class="component-text"><a href="/"><span>INTEGRA</span></a></span>
+<header>
+    <div>
+        <div class="component-container">
+            <span class="component-text"><a href="/"><span>INTEGRA</span></a></span>
+        </div>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="redirectVivienda()">VIVENDA</a></li>
+            <li><a href="#" onclick="redirectLocal()">LOCALES</a></li>
+            <li><a href="#" onclick="redirectTerrenos()">TERRENOS</a></li>
+            <li><a href="#" onclick="redirectServicios()">SERVICIOS</a></li>
+            <li><a href="#" onclick="redirectContactos()">CONTACTO</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="property-card">
+        <div class="carousel">
+            <div th:each="image : ${localImages}" class="carousel__slide">
+                <img th:src="@{'/public/imagesVivienda/' + ${image.nameImage}}" alt="">
             </div>
         </div>
-        <nav>
-            <ul>
-                <li><a href="/public/Vivienda">Vivienda</a></li>
-                <li><a href="/public/Local">Locales</a></li>
-                <li><a href="/public/Terrenos">Terrenos</a></li>
-                <li><a href="/public/Servicios">Servicios</a></li>
-                <li><a href="/public/Contactos">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-    
-        
-    
+    </div>
+
+
+
     <div class="info-card">
         <div class="left-card">
             <div class="name">
-                <span class="refn">REF:</span>
-                <p class="ref" th:text="${local.id}">100</p>
-                <h2 th:text="${local.titulo}">Apartamento</h2>
-                </div>
-            <div class="wrapper">
-                <section class="precio" th:text="${local.precio}">€20,000</section>
-                <span class="bath"><img src="../../static/public/images/image/Bath.png" alt=""th:text="${local.bano}" > <span>1</span></span>
-                <span class="plan"><img src="../../static/public/images/image/Plan.png" alt="" > <span><span th:text="${local.tamano}">20</span><span>m<sup>2</sup></span></span>
-            </div>        
+                <span class="refn">REF:<span class="ref" th:text="${local.id}" id="id"></span></span>
+                <h2 th:text="${local.titulo}" id="title">Apartamento</h2>
             </div>
-        <div class="descript">
+            <div class="wrapper">
+                <span class="precio" th:text="${local.precio}" id="precio"></span>
+                <span class="bath" ><img src="../../static/public/images/image/bath.png" alt=""><span th:text="${local.bano}" id="bano"></span></span>
+                <span class="plan"><img src="../../static/public/images/image/Plan.png" alt="" > <span><span th:text="${local.tamano}" id="tamano">20</span><span>m<sup>2</sup></span></span></span>
+            </div>
+        </div>
+        <div class="descript" >
             <h3>Descripción</h3>
-            <p th:text="${local.description}">
-    
+            <p th:text="${local.description}" id="descript">
+
                 Este apartamento se encuentra en una zona muy tranquila de Guardamar, enfrente del Parque Alfonso XIII y a
                 una
                 distancia de la playa de un kilometro. Se trata de una urbanización moderna con bonitas vistas y que se
                 caracteriza por sus zonas comunes y jardines dentro del propio residencial.
-    
-    
+
+
                 CARACTERISTICAS:
-    
+
                 - Apartamento de 80 m2 construidos ubicado en la 4ª planta de un edificio con ascensor.
-    
+
                 - La vivienda tiene una orientación este con sol de mañana y se encuentra en muy buenas condiciones.
-    
+
                 - Terraza amplia con bonitas vistas a la Pinada, espacio para una mesa, varias sillas y con toldo instalado
-    
+
                 - Salón comedor luminoso y ventilado, completamente amueblado y con acceso directo a la terraza.
-    
+
                 - Habitación de invitados con dos camas individuales, una mesita de noche, armario empotrado y ventana.
-    
+
                 - Habitación principal con cama de matrimonio, dos mesitas de noche, armario empotrado y acceso a la
                 terraza.
-    
+
                 - Cocina independiente con todos los electrodomésticos instalados y acceso a una galería.
-    
+
                 - Galería / lavandería cerrada con ventana con lavadora, termo eléctrico y zona de almacenaje.
-    
+
                 - 1 cuarto de baño completo con bañera, bidet lavabo, inodoro y armario.
-    
+
                 - 1 cuarto de baño completo con plato de ducha, lavabo, inodoro y armario.
-    
+
                 - Sistema de aire acondicionado con bomba frio / calor por conductos por toda la vivienda.
-    
+
                 - 2 Plazas de garaje + 1 Trastero en mismo residencial OPCIONALMENTE, NO INCLUIDOS EN EL PRECIO.
-    
+
                 - Piscina comunitaria con cesped, zona de jacuzzi, chorros de hidromasaje y silla elevadora para
                 minusválidos.
-    
+
                 - Pistas deportivas de futbol / baloncesto, tenis, padel y mesa de ping pong,
-    
+
                 - Zonas ajardinadas con parque infantil, pista de petanca, gimnasio y club social para niños.
-    
+
             </p>
         </div>
-        </div>
-    </main>
+    </div>
+    <div class="caract">
+        <div class="cuidad"><img src="../../static/public/images/image/city.png" alt=""> <span class="cuidadspan"th:text="${local.cuidad}" id="cuidad"></span></div>
+        <div class="tipo"><img src="../../static/public/images/image/type.png" alt="" > <span th:text="${local.tipo}"></span></span></div>
+        <div class="opcion"><img src="../../static/public/images/image/opc.png" alt="" > <span th:text="${local.opcion}"></span></span></div>
+    </div>
+</main>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $('.carousel').slick({
-            autoplay: true,
-            arrows: true,
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        });
-    });
-    // Обработчик события на клик по изображению в карусели
-$('.carousel__slide img').click(function() {
-    const imageUrl = $(this).attr('src');
-    
-    // Создаем элемент для увеличенной картинки
-    const expandedImage = $('<div id="expandedImage"><img src="' + imageUrl + '"></div>');
-    
-    // Добавляем элемент в body
-    $('body').append(expandedImage);
-    
-    // Обработчик события на клик по увеличенной картинке для закрытия
-    expandedImage.click(function() {
-        $(this).remove();
-    });
-});
-
-</script>
 <footer class="component1-footer">
     <div class="component1-container1">
         <h2>Integra</h2>
@@ -163,8 +142,8 @@ $('.carousel__slide img').click(function() {
         </div>
         <div class="component1-container5">
             <div class="component1-container6">
-                <span class="component1-text11">Aviso Legal</span>
-                <span class="component1-text12">Política de Privacidad</span>
+                <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+                <span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span>
                 <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
             </div>
         </div>
@@ -179,25 +158,89 @@ $('.carousel__slide img').click(function() {
             <p class="heading">Login</p>
             <div class="inputContainer">
                 <svg class="inputIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2e2e2e" viewBox="0 0 16 16">
-                <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"></path>
+                    <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"></path>
                 </svg>
-            <input type="text" class="inputField" id="email" placeholder="Username">
+                <input type="text" class="inputField" id="email" placeholder="Username">
             </div>
-            
-        <div class="inputContainer">
-            <svg class="inputIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2e2e2e" viewBox="0 0 16 16">
-            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
-            </svg>
-            <input type="password" class="inputField" id="password" placeholder="Password">
-        </div>
-                      
-        <a href="#" onclick="logoutUser()">Salir</a>
-        <button id="button" onclick="authenticateUser()">Entrar</button>
+
+            <div class="inputContainer">
+                <svg class="inputIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#2e2e2e" viewBox="0 0 16 16">
+                    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
+                </svg>
+                <input type="password" class="inputField" id="password" placeholder="Password">
+            </div>
+
+            <a href="#" onclick="logoutUser()">Salir</a>
+            <button id="button" onclick="authenticateUser()">Entrar</button>
         </form>
-        
+
         <!-- Добавьте кнопку закрытия окна -->
         <span class="close" onclick="closeLoginPopup()">&times;</span>
     </div>
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function(){
+       $('.carousel').slick({
+           autoplay: true,
+           arrows: true,
+           dots: true,
+           infinite: true,
+           speed: 500,
+           slidesToShow: 1,
+           slidesToScroll: 1
+       });
+
+       $('.carousel__slide img').click(function() {
+           const images = $('.carousel__slide img'); // Получаем все изображения карусели
+           const imageUrl = $(this).attr('src');
+           const expandedImage = $('<div id="expandedImage"><img src="' + imageUrl + '"></div>');
+
+           $('body').append(expandedImage);
+
+           // Добавляем стрелки для переключения изображений внутри увеличенного изображения
+           const prevArrow = $('<div id="expandedPrevArrow" class="expanded-arrow"><i class="fa fa-chevron-left"></i></div>');
+           const nextArrow = $('<div id="expandedNextArrow" class="expanded-arrow"><i class="fa fa-chevron-right"></i></div>');
+           expandedImage.append(prevArrow).append(nextArrow);
+
+           let currentIndex = images.index(this); // Получаем индекс текущего изображения
+
+           // Обработчик для кнопки "Предыдущее изображение"
+           prevArrow.click(function() {
+               currentIndex = (currentIndex - 1 + images.length) % images.length;
+               expandedImage.find('img').attr('src', images.eq(currentIndex).attr('src'));
+           });
+
+           // Обработчик для кнопки "Следующее изображение"
+           nextArrow.click(function() {
+               currentIndex = (currentIndex + 1) % images.length;
+               expandedImage.find('img').attr('src', images.eq(currentIndex).attr('src'));
+           });
+
+           expandedImage.click(function() {
+               $(this).remove();
+           });
+       });
+   });
+
+
+       document.addEventListener("DOMContentLoaded", function() {
+       var priceElements = document.querySelectorAll(".precio");
+       priceElements.forEach(function(element) {
+           var price = parseFloat(element.textContent);
+           if (!isNaN(price)) {
+               var formattedPrice = price.toLocaleString("en-US", {
+                   style: "currency",
+                   currency: "EUR",
+                   minimumFractionDigits: 0,
+                   maximumFractionDigits: 0
+               });
+               element.textContent = formattedPrice;
+           }
+       });
+   });
+
+</script>
 </body>
 </html>

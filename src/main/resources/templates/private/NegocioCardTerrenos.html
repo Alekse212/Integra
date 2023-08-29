@@ -28,7 +28,7 @@
     </header>
     <main>
         <div class="property-card">
-            <button class='variousamechanics'>
+            <button id='variousamechanics' class='variousamechanics' style="display:none;">
                 <div class='cleverlypaired'>
                 <i class='fa fa-trash-o'></i>
                 <i class='fa fa-question'></i>
@@ -38,167 +38,364 @@
                 <span>Удалить!</span>
                 </div>
               </button>
+            <div style="display:none;" id="photo-selection" class="photo-selection">
+                <label for="imageInput" class="custom-file-input">Elige nuevos imagenes</label>
+                <input type="file" id="imageInput" multiple>
+                <button  id="addImagesButton">Introducir imagen</button>
+            </div>
             <div class="carousel">
-                <div th:each="image : ${terrenos.imageViviendas}" class="carousel__slide">
-                    <img th:src="@{'/public/imagesVivienda/' + ${image}}" alt="">
+                <div th:each="image : ${terrenosImages}" class="carousel__slide">
+                    <img th:src="@{'/public/imagesVivienda/' + ${image.nameImage}}" alt="">
+                    <button class="delete-image-button" data-image-name="${image.nameImage}">Eliminar imagen</button>
                 </div>
             </div>
         </div>
-    
-        
-    
-    <div class="info-card">
-        <div class="left-card">
-            <div class="name">
-                <span class="refn">REF:</span>
-                <p class="ref" th:text="${terrenos.id}">100</p>
-                <h2 th:text="${terrenos.title}">Apartamento</h2>
+
+
+
+        <div class="info-card">
+            <div class="left-card">
+                <div class="name">
+                    <span class="refn">REF:<span class="ref" th:text="${terrenos.id}" id="id"></span></span>
+                    <h2 th:text="${terrenos.title}" id="title">Apartamento</h2>
                 </div>
-            <div class="wrapper">
-                <section class="precio" th:text="${terrenos.precio}">€20,000</section>
-                <span class="plan"><img src="../../static/public/images/image/Plan.png" alt="" > <span><span th:text="${terrenos.tamano}">20</span><span>m<sup>2</sup></span></span>
-            </div>        
+                <div class="wrapper">
+                    <span class="precio" th:text="${terrenos.precio}" id="precio"></span>
+                     <span class="plan"><img src="../../static/public/images/image/Plan.png" alt="" > <span><span th:text="${terrenos.tamano}" id="tamano">20</span><span>m<sup>2</sup></span></span></span>
+                </div>
             </div>
-        <div class="descript">
-            <h3>Descripción</h3>
-            <p th:text="${terrenos.descripcion}">
-    
-                Este apartamento se encuentra en una zona muy tranquila de Guardamar, enfrente del Parque Alfonso XIII y a
-                una
-                distancia de la playa de un kilometro. Se trata de una urbanización moderna con bonitas vistas y que se
-                caracteriza por sus zonas comunes y jardines dentro del propio residencial.
-    
-    
-                CARACTERISTICAS:
-    
-                - Apartamento de 80 m2 construidos ubicado en la 4ª planta de un edificio con ascensor.
-    
-                - La vivienda tiene una orientación este con sol de mañana y se encuentra en muy buenas condiciones.
-    
-                - Terraza amplia con bonitas vistas a la Pinada, espacio para una mesa, varias sillas y con toldo instalado
-    
-                - Salón comedor luminoso y ventilado, completamente amueblado y con acceso directo a la terraza.
-    
-                - Habitación de invitados con dos camas individuales, una mesita de noche, armario empotrado y ventana.
-    
-                - Habitación principal con cama de matrimonio, dos mesitas de noche, armario empotrado y acceso a la
-                terraza.
-    
-                - Cocina independiente con todos los electrodomésticos instalados y acceso a una galería.
-    
-                - Galería / lavandería cerrada con ventana con lavadora, termo eléctrico y zona de almacenaje.
-    
-                - 1 cuarto de baño completo con bañera, bidet lavabo, inodoro y armario.
-    
-                - 1 cuarto de baño completo con plato de ducha, lavabo, inodoro y armario.
-    
-                - Sistema de aire acondicionado con bomba frio / calor por conductos por toda la vivienda.
-    
-                - 2 Plazas de garaje + 1 Trastero en mismo residencial OPCIONALMENTE, NO INCLUIDOS EN EL PRECIO.
-    
-                - Piscina comunitaria con cesped, zona de jacuzzi, chorros de hidromasaje y silla elevadora para
-                minusválidos.
-    
-                - Pistas deportivas de futbol / baloncesto, tenis, padel y mesa de ping pong,
-    
-                - Zonas ajardinadas con parque infantil, pista de petanca, gimnasio y club social para niños.
-    
-            </p>
+            <div class="descript" >
+                <h3>Descripción</h3>
+                <p th:text="${terrenos.descripcion}" id="descript">
+
+                    Este apartamento se encuentra en una zona muy tranquila de Guardamar, enfrente del Parque Alfonso XIII y a
+                    una
+                    distancia de la playa de un kilometro. Se trata de una urbanización moderna con bonitas vistas y que se
+                    caracteriza por sus zonas comunes y jardines dentro del propio residencial.
+
+
+                    CARACTERISTICAS:
+
+                    - Apartamento de 80 m2 construidos ubicado en la 4ª planta de un edificio con ascensor.
+
+                    - La vivienda tiene una orientación este con sol de mañana y se encuentra en muy buenas condiciones.
+
+                    - Terraza amplia con bonitas vistas a la Pinada, espacio para una mesa, varias sillas y con toldo instalado
+
+                    - Salón comedor luminoso y ventilado, completamente amueblado y con acceso directo a la terraza.
+
+                    - Habitación de invitados con dos camas individuales, una mesita de noche, armario empotrado y ventana.
+
+                    - Habitación principal con cama de matrimonio, dos mesitas de noche, armario empotrado y acceso a la
+                    terraza.
+
+                    - Cocina independiente con todos los electrodomésticos instalados y acceso a una galería.
+
+                    - Galería / lavandería cerrada con ventana con lavadora, termo eléctrico y zona de almacenaje.
+
+                    - 1 cuarto de baño completo con bañera, bidet lavabo, inodoro y armario.
+
+                    - 1 cuarto de baño completo con plato de ducha, lavabo, inodoro y armario.
+
+                    - Sistema de aire acondicionado con bomba frio / calor por conductos por toda la vivienda.
+
+                    - 2 Plazas de garaje + 1 Trastero en mismo residencial OPCIONALMENTE, NO INCLUIDOS EN EL PRECIO.
+
+                    - Piscina comunitaria con cesped, zona de jacuzzi, chorros de hidromasaje y silla elevadora para
+                    minusválidos.
+
+                    - Pistas deportivas de futbol / baloncesto, tenis, padel y mesa de ping pong,
+
+                    - Zonas ajardinadas con parque infantil, pista de petanca, gimnasio y club social para niños.
+
+                </p>
+            </div>
         </div>
+        <div class="caract">
+            <div class="cuidad"><img src="../../static/public/images/image/city.png" alt=""> <span class="cuidadspan"th:text="${terrenos.cuidad}" id="cuidad"></span></div>
+            <div class="ibi"><img src="../../static/public/images/image/ibi.png" alt=""> <span th:text="${terrenos.ibi}" id="ibi"></span>
+           </div>
+        <div class="visibility" id="visibilityt" style=" display: none;">
+            <label>Visibility</label>
+            <div class="toggle-button-cover">
+                <div class="button r" id="button-3">
+                    <input type="checkbox" class="checkbox" id="visibility">
+                    <div class="knobs"></div>
+                    <div class="layer"></div>
+                </div>
+            </div>
         </div>
+
+        <button id="editButton">Cambiar</button>
+        <button id="saveButton" style="display: none;">Guardar</button>
+
     </main>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $('.carousel').slick({
-            autoplay: true,
-            arrows: true,
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        });
-    });
-    // Обработчик события на клик по изображению в карусели
-$('.carousel__slide img').click(function() {
-    const imageUrl = $(this).attr('src');
+    <script>
+        $(document).ready(function () {
+               $('.carousel').slick({
+                   autoplay: true,
+                   arrows: true,
+                   dots: true,
+                   infinite: true,
+                   speed: 1000,
+                   slidesToShow: 1,
+                   slidesToScroll: 1
+               });
 
-    // Создаем элемент для увеличенной картинки
-    const expandedImage = $('<div id="expandedImage"><img src="' + imageUrl + '"></div>');
+               // Обработка добавления новых фотографий
+               $('#addImagesButton').on('click', async function () {
+                   const imageInput = $('#imageInput')[0];
+                   const token = localStorage.getItem('token');
+           const terrenosId = parseInt(document.getElementById('id').textContent) ; // Replace with the actual vivienda ID
+           const accessToken = token; // Replace with the actual access token
 
-    // Добавляем элемент в body
-    $('body').append(expandedImage);
+           const formData = new FormData();
+           for (let i = 0; i < imageInput.files.length; i++) {
+               formData.append('images', imageInput.files[i]);
+           }
 
-    // Обработчик события на клик по увеличенной картинке для закрытия
-    expandedImage.click(function() {
-        $(this).remove();
-    });
-});
-// Добавьте это в ваш скрипт, после кода для слайдера
-$(document).ready(function() {
-    $("button").click(function() {
-        // Проверяем, содержит ли кнопка класс "samilpaken"
-        if (!$(event.target).hasClass("slick-arrow")) {
-            if ($(this).hasClass("samilpaken")) {
-            // Получаем подтверждение от пользователя
-            const confirmed = confirm("Вы уверены, что хотите удалить?");
-            if (confirmed) {
-                // Получаем значение 'id' из URL
-                const urlParams = new URLSearchParams(window.location.search);
-                const id = urlParams.get('id');
-                // Формируем ссылку для удаления с подставленным 'id'
-                const currentUrl = window.location.href;
-                const modifiedUrl = currentUrl.replace("/private/", "/private/delete/");
-                // Переходим по ссылке
-                window.location.href = modifiedUrl;
-            }
-        } else {
-            $(this).addClass("samilpaken");
-            $("span", this).text("Ты уверен?");
-        }
-    }
-    });
+           try {
+               const response = await fetch(`/private/Terrenos/addImage/${terrenosId}`, {
+                   method: 'POST',
+                   headers: {
+                       'Authorization': 'Bearer ' + accessToken
+                   },
+                   body: formData
+               });
 
-    // Reset (этот код остается без изменений)
-    $("button").on('mouseout', function() {
-        if ($(this).hasClass("samilpaken") || $(this).hasClass("done")) {
-            setTimeout(function() {
-                $("button").removeClass("samilpaken").removeClass("done");
-                $("span").text("Удалить");
-            }, 3000);
-        }
-    });
-});
 
-function redirectVivienda() {
-            const token = localStorage.getItem('token');
-            if (token) {
-              window.location.href = "/private/Vivienda?token=" + encodeURIComponent(token);
-            } else {
-              window.location.href = "/public/Vivienda";
-            }
-          }
-          function redirectLocal() {
-            const token = localStorage.getItem('token');
-            if (token) {
-              window.location.href = "/private/Local?token=" + encodeURIComponent(token);
-            } else {
-              window.location.href = "/public/Local";
-            }
-          }
-          
-          function redirectTerrenos() {
-            const token = localStorage.getItem('token');
-            if (token) {
-              window.location.href = "/private/Terrenos?token=" + encodeURIComponent(token);
-            } else {
-              window.location.href = "/public/Terrenos";
-            }
-          }
-</script>
+                       if (response.ok) {
+                           // Images added successfully
+                           const newImageSlide = $('#newImageSlide');
+                           alert('Imagen introducido.')
+                           for (const file of imageInput.files) {
+                               const imageUrl = URL.createObjectURL(file);
+                               const newImage = $(`<div class="carousel__slide"><img src="${imageUrl}" alt=""><button class="delete-image-button">Удалить</button></div>`);
+                               newImageSlide.append(newImage);
+                           }
+                       } else {
+                           // Handle error
+                       }
+                   } catch (error) {
+                       alert(error);
+                   }
+               });
+
+
+               // Обработка удаления фотографий
+       $('.carousel').on('click', '.delete-image-button', async function () {
+           const button = $(this);
+           const imageDiv = button.parent();
+
+           // Find the image element within the imageDiv
+           const image = imageDiv.find('img');
+
+           // Extract the image name from the src attribute
+           const imageUrl = image.attr('src');
+           const imageName = imageUrl.substring(imageUrl.lastIndexOf('/') + 1);
+
+           const token = localStorage.getItem('token');
+           const terrenosId = parseInt(document.getElementById('id').textContent);
+           const accessToken = token;
+
+           try {
+               const response = await fetch(`/private/Terrenos/deleteImage/${terrenosId}/${imageName}`, {
+                   method: 'POST',
+                   headers: {
+                       'Authorization': 'Bearer ' + accessToken
+                   }
+               });
+
+               if (response.ok) {
+                   // Image deleted successfully
+                   imageDiv.remove();
+                   alert('Imagen eliminado.')
+               } else {
+                   // Handle error
+               }
+           } catch (error) {
+               alert(error);
+           }
+       });
+
+       });
+       $('.carousel__slide img').click(function() {
+           const imageUrl = $(this).attr('src');
+
+           const expandedImage = $('<div id="expandedImage"><img src="' + imageUrl + '"></div>');
+
+           $('body').append(expandedImage);
+
+           expandedImage.click(function() {
+               $(this).remove();
+           });
+       });
+                 // Добавьте это в ваш скрипт, после кода для слайдера
+                 $(document).ready(function() {
+                     $("button.variousamechanics").click(function() {
+                         // Проверяем, содержит ли кнопка класс "samilpaken"
+                         if (!$(event.target).hasClass("slick-arrow")) {
+                             if ($(this).hasClass("samilpaken")) {
+                             // Получаем подтверждение от пользователя
+                             const confirmed = confirm("Вы уверены, что хотите удалить?");
+                             if (confirmed) {
+                                 // Получаем значение 'id' из URL
+                                 const urlParams = new URLSearchParams(window.location.search);
+                                 const id = urlParams.get('id');
+                                 // Формируем ссылку для удаления с подставленным 'id'
+                                 const currentUrl = window.location.href;
+                                 const modifiedUrl = currentUrl.replace("/private/", "/private/delete/");
+                                 // Переходим по ссылке
+                                 window.location.href = modifiedUrl;
+                             }
+                         } else {
+                             $(this).addClass("samilpaken");
+                             $("span", this).text("Ты уверен?");
+                         }
+                     }
+                     });
+
+                     // Reset (этот код остается без изменений)
+                     $("button").on('mouseout', function() {
+                         if ($(this).hasClass("samilpaken") || $(this).hasClass("done")) {
+                             setTimeout(function() {
+                                 $("button").removeClass("samilpaken").removeClass("done");
+                             }, 3000);
+                         }
+                     });
+                 });
+                 function redirectVivienda() {
+                     const token = localStorage.getItem('token');
+                     if (token) {
+                       window.location.href = "/private/Vivienda?token=" + encodeURIComponent(token);
+                     } else {
+                       window.location.href = "/public/Vivienda";
+                     }
+                   }
+                   function redirectLocal() {
+                     const token = localStorage.getItem('token');
+                     if (token) {
+                       window.location.href = "/private/Local?token=" + encodeURIComponent(token);
+                     } else {
+                       window.location.href = "/public/Local";
+                     }
+                   }
+
+                   function redirectTerrenos() {
+                     const token = localStorage.getItem('token');
+                     if (token) {
+                       window.location.href = "/private/Terrenos?token=" + encodeURIComponent(token);
+                     } else {
+                       window.location.href = "/public/Terrenos";
+                     }
+                   }
+
+                   document.addEventListener("DOMContentLoaded", function() {
+                     var priceElements = document.querySelectorAll(".precio");
+                     priceElements.forEach(function(element) {
+                         var price = parseFloat(element.textContent);
+                         if (!isNaN(price)) {
+                             var formattedPrice = price.toLocaleString("en-US", {
+                                 style: "currency",
+                                 currency: "EUR",
+                                 minimumFractionDigits: 0,
+                                 maximumFractionDigits: 0
+                             });
+                             element.textContent = formattedPrice;
+                         }
+                     });
+                 });
+
+              document.addEventListener("DOMContentLoaded", function() {
+                 const editButton = document.getElementById("editButton");
+                 const saveButton = document.getElementById("saveButton");
+
+                 const editableFields = [
+                     { id: "title", property: "title" },
+                     { id: "descript", property: "descripcion" },
+                     { id: "precio", property: "precio" },
+                     { id: "tamano", property: "tamano" },
+                     { id: "cuidad", property: "cuidad" },
+                     { id: "ibi", property: "ibi" }
+                     // Добавьте аналогичные объекты для других полей
+                 ];
+
+                 editButton.addEventListener("click", function() {
+                     editableFields.forEach(field => {
+                         const fieldElement = document.getElementById(field.id);
+                         if (fieldElement) { // Проверяем, что элемент существует
+                             fieldElement.contentEditable = true;
+
+                         }
+                         });
+                     document.getElementById("visibilityt").style.display = "block"
+                     document.getElementById("visibilityt").style.display = "block"
+                     document.getElementById("variousamechanics").style.display = "block"
+                     document.getElementById("photo-selection").style.display = "block"
+                     saveButton.style.display = "block";
+                     editButton.style.display = "none";
+                 });
+
+                 saveButton.addEventListener("click", function() {
+                     editableFields.forEach(field => {
+                         const fieldElement = document.getElementById(field.id);
+                         if (fieldElement && fieldElement.isContentEditable) {
+                             fieldElement.contentEditable = false;
+                             }
+                     document.getElementById("visibilityt").style.display = "none"
+                     document.getElementById("visibilityt").style.display = "none"
+                     document.getElementById("variousamechanics").style.display = "none"
+                     document.getElementById("photo-selection").style.display = "none"
+
+                             });
+               event.preventDefault();
+           var visibilityCheckbox = document.getElementById('visibility');
+               const url = `/private/Terrenos/edit`;
+               const formData = {
+               id: parseInt(document.getElementById('id').textContent),
+               title: document.getElementById('title').textContent,
+               descripcion: document.getElementById('descript').textContent,
+               precio: parseInt(document.getElementById('precio').textContent.replace(/€|,/g, "")),
+               cuidad: document.getElementById('cuidad').textContent,
+               tamano: parseFloat(document.getElementById('tamano').textContent),
+               ibi: parseFloat(document.getElementById('ibi').textContent),
+               visibility: visibilityCheckbox.checked
+
+             };
+
+             /*if (isNaN(document.getElementById('precio').textContent)) {
+                             alert("Неверное значение цены: " + document.getElementById('precio').textContent);
+                         }*/
+               const token = localStorage.getItem('token');
+               if (token) {
+                 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+               }
+
+               axios.post(url, formData)
+               .then(function (response) {
+                 alert('Вы успешно');
+                 const viviendaId = response.data;
+                 console.log('Данные успешно добавлены в базу данных. ID:', viviendaId);
+                 alert('Данные успешно добавлены в базу данных!');
+                 document.getElementById('casaForm').reset();
+                 redirectToCasas(viviendaId);
+               })
+               .catch(function (error) {
+                 console.error('Ошибка при добавлении данных:', error);
+                 alert('Ошибка при добавлении данных!');
+               });
+               saveButton.style.display = "none";
+               editButton.style.display = "block";
+               document.getElementById("extraDiv").style.display = "none"
+                 });
+             });
+
+
+    </script>
 <footer class="component1-footer">
     <div class="component1-container1">
         <h2>Integra</h2>
@@ -239,8 +436,8 @@ function redirectVivienda() {
         </div>
         <div class="component1-container5">
             <div class="component1-container6">
-                <span class="component1-text11">Aviso Legal</span>
-                <span class="component1-text12">Política de Privacidad</span>
+                <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+                <span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span>
                 <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
             </div>
         </div>

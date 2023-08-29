@@ -55,11 +55,20 @@
 
             <label for="opcion">Opcion</label>
             <select name="opcion" id="opcion">
-                <option value="Comprar">Comprar</option>
+                <option value="Venta">Venta</option>
                 <option value="Alquiler">Alquiler</option>
-                <option value="Traspasa">Traspasa</option>
+                <option value="Traspaso">Traspaso</option>
             </select>
-
+            <div class="visibility">
+                <label>Visibility</label>
+                <div class="toggle-button-cover">
+                    <div class="button r" id="button-3">
+                        <input type="checkbox" class="checkbox" id="visibility">
+                        <div class="knobs"></div>
+                        <div class="layer"></div>
+                    </div>
+                </div>
+            </div>
 
             <button type="submit">Introducir</button>
         </form>
@@ -109,8 +118,8 @@
         </div>
         <div class="component1-container5">
             <div class="component1-container6">
-                <span class="component1-text11">Aviso Legal</span>
-                <span class="component1-text12">Política de Privacidad</span>
+                <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+                <span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span>
                 <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
             </div>
         </div>
@@ -162,7 +171,7 @@
     // Оставьте остальной JavaScript-код без изменений
     document.getElementById('casaForm').addEventListener('submit', function (event) {
       event.preventDefault();
-
+      var visibilityCheckbox = document.getElementById('visibility');
       const formData = {
         titulo: document.getElementById('titulo').value,
         description: document.getElementById('description').value,
@@ -171,7 +180,8 @@
         tamano: parseFloat(document.getElementById('tamano').value),
         bano: parseFloat(document.getElementById('bano').value),
         tipo: document.getElementById('tipo').value,
-        opcion: document.getElementById('opcion').value
+        opcion: document.getElementById('opcion').value,
+        visibility: visibilityCheckbox.checked
       };
 
       // Если токен есть, добавьте его в заголовок axios

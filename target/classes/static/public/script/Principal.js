@@ -31,6 +31,8 @@
                 document.getElementById('accountMenu').style.display = 'block';
 
                 fetchUserInfo();
+                const tokenElement = document.getElementById('tokenDisplay');
+                tokenElement.textContent = `Вы авторизованы`;
             } else {
                 alert('Ошибка аутентификации: ' + data.message);
             }
@@ -39,7 +41,6 @@
             console.error('Ошибка при отправке запроса:', error);
         });
         closeLoginPopup();
-        redirectToSectionWithToken();
     }
 
 

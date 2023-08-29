@@ -40,6 +40,11 @@ import java.io.IOException;
         System.out.println("Изображение успешно загружено из Amazon S3.");
         return imageData;
     }
+    public void deleteImageFromS3(String key) {
+        amazonS3.deleteObject("alexintegra", key);
+        System.out.println("Image deleted from Amazon S3 successfully.");
+    }
+
 
     }
 

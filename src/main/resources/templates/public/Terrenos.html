@@ -48,28 +48,27 @@
       </div>
       <div class="terrenos">
         <div th:each="terrenos : ${terrenos}" class="terrenos-block">
-          <a href="#" th:data-id="${terrenos.id}" onclick="redirectCard(this.getAttribute('data-id'))">
-            <div class="none_decor">
-              <div class="previewimg">
-                <img class="card-preview-img"  th:src="@{/public/imagesVivienda/{imageName}(imageName=${terrenos.previewImage})}" />
-              </div>
-              <h2 th:text="${terrenos.title}">Título</h2>
-              <div class="card-img-top">
-                <div class="card-cuidad">
-                  <img src="/public/images/image/city.png"alt="">
-                  <span th:text="${terrenos.cuidad}">Guardama del Segura</span></br>
+            <a href="#" th:data-id="${terrenos.id}" onclick="redirectCardTer(this.getAttribute('data-id'))">
+                <div class="none_decor">
+                    <img class="card-preview-img"  th:src="@{/public/imagesVivienda/{imageName}(imageName=${terrenos.previewImage})}" />
+                    <div class="card-precio">
+                        <span th:text="${terrenos.precio}">20000</span><span>€</span></br>
+                    </div>
+                    <h2 th:text="${terrenos.title}">Titulo</h2>
+                    <div class="card-img-top">
+                        <div class="card-cuidad">
+                            <img src="/public/images/image/city.png"alt="">
+                            <span th:text="${terrenos.cuidad}">Guardama del Segura</span></br>
+                        </div>
+                        <div class="card-tamano">
+                            <img src="/public/images/image/Plan.png" alt="">
+                            <span><span th:text="${terrenos.tamano}">200</span><span>m<sup>2</sup></span></span>
+                        </div>
+
+                        <div class="card-bath"></div>
+                    </div>
                 </div>
-                <div class="card-tamano">
-                  <img src="/public/images/image/Plan.png" alt="">
-                  <span><span th:text="${terrenos.tamano}">200</span><span>m<sup>2</sup></span></span>
-                </div>
-                <div class="card-precio">
-                  <img src="/public/images/image/euro.png" alt="">
-                  <span th:text="${terrenos.precio}">20000</span></br>
-                </div>
-              </div>
-            </div>
-          </a>
+            </a>
         </div>
       </div>
       </div>
@@ -114,8 +113,8 @@
           </div>
           <div class="component1-container5">
               <div class="component1-container6">
-                  <span class="component1-text11">Aviso Legal</span>
-                  <span class="component1-text12">Política de Privacidad</span>
+                  <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+                  <span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span>
                   <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
               </div>
           </div>
@@ -182,7 +181,7 @@ function redirectCard(id) {
 
    // Перенаправляем на страницу без параметров фильтрации
    const token = localStorage.getItem('token');
-   window.location.href = `/public/Terrenos/${encodeURIComponent(id)}`;
+   window.location.href = `/public/Terrenos`;
 }
        function populateFilterFields() {
        // Получаем значения из параметров URL
@@ -195,6 +194,7 @@ function redirectCard(id) {
        document.querySelector('input[name="tamanoMin"]').value = urlParams.get("tamanoMin") || "";
        document.querySelector('input[name="tamanoMax"]').value = urlParams.get("tamanoMax") || "";
        document.querySelector('input[name="fechadeintroduccion"]').value = urlParams.get("fechadeintroduccion") || "";
+       document.querySelector('select[name="urbanizable"]').value = urlParams.get("urbanizable") || "";
        // Дополнительные поля, если нужно
        // document.querySelector('select[name="estado"]').value = urlParams.get("estado") || "";
 
@@ -213,6 +213,8 @@ function redirectCard(id) {
            const fechadeintroduccionInput = document.querySelector('input[name="fechadeintroduccion"]');
            const estadoSelect = document.querySelector('select[name="estado"]');
            const fechadeintroduccionFilter = fechadeintroduccionInput.value;
+           const urbanizableSelect = document.querySelector('select[name="urbanizable"]');
+           const urbanizableFilter = urbanizableSelect.value;
            // Строим URL с фильтрами
            let filteredUrl = `/public/Terrenos?`;
            // Преобразуем значения в числа, проверяем на NaN и задаем значения по умолчанию
@@ -245,6 +247,9 @@ function redirectCard(id) {
            if (fechadeintroduccionFilter.trim() !== '') {
                filteredUrl += `&fechadeintroduccion=${encodeURIComponent(fechadeintroduccionFilter)}`;
            }
+           if (urbanizableFilter !== '') {
+                filteredUrl += `&urbanizable=${encodeURIComponent(urbanizableFilter)}`;
+            }
 
            document.querySelector('input[name="cuidad"]').value = cuidadFilter;
            document.querySelector('input[name="minPrice"]').value = minPriceFilter;
@@ -252,6 +257,7 @@ function redirectCard(id) {
            document.querySelector('input[name="tamanoMin"]').value = tamanoMinFilter;
            document.querySelector('input[name="tamanoMax"]').value = tamanoMaxFilter;
            document.querySelector('input[name="fechadeintroduccion"]').value = fechadeintroduccionFilter;
+           document.querySelector('select[name="urbanizable"]').value = urbanizableFilter;
 
            // Redirect to the filtered URL
            window.location.href = filteredUrl;

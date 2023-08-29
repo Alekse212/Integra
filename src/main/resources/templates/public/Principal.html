@@ -6,6 +6,15 @@
     <link rel="stylesheet" type="text/css" href="/public/css/Proyecto.css">
     <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
     <script src="/public/script/Principal.js"></script>
+    <script type="application/ld+json">
+        {
+            "@context": "http://integra.community",
+            "@type": "Integra",
+            "name": "integra",
+            "logo": "/favicon.ico",
+            "url": "integra.community"
+        }
+    </script>
     <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -33,17 +42,13 @@
 </div>
 </header>
 <main>
+    <div id="tokenDisplay"></div>
+
     <div class="pre-menu">
     <section id="Vivienda">
         <a href="#" onclick="redirectVivienda()">
             <h2>VIVENDA</h2>
             <img src="/public/images/image/house.jpg" alt="casas">
-        </a>
-    </section>
-    <section id="SERVICIOS">
-        <a href="/public/Servicios">
-            <h2>SERVICIOS</h2>
-            <img src="/public/images/image/service.jpg" alt="">
         </a>
     </section>
     <section id="TERRENOS">
@@ -58,6 +63,12 @@
             <img src="/public/images/image/localp.jpg" alt="terrenos">
         </a>
     </section>
+        <section id="SERVICIOS">
+            <a href="/public/Servicios">
+                <h2>SERVICIOS</h2>
+                <img src="/public/images/image/service.jpg" alt="">
+            </a>
+        </section>
     </div>
     <section id="background-block">
         
@@ -234,8 +245,8 @@
         </div>
         <div class="component1-container5">
             <div class="component1-container6">
-                <span class="component1-text11">Aviso Legal</span>
-                <span class="component1-text12">Política de Privacidad</span>
+                <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+                <span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span>
                 <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
             </div>
         </div>

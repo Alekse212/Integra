@@ -82,8 +82,8 @@
                 <option value="Sureste">Sureste</option>
             </select>
 
-            <label for="Plantas">Planta</label>
-            <select name="Plantas" id="Plantas">
+            <label for="plantas">Planta</label>
+            <select name="plantas" id="plantas">
                 <option value="Bajo">Bajo</option>
                 <option value="Intermedios">Intermedios</option>
                 <option value="Ultima_planta">Ultima_planta</option>
@@ -91,9 +91,9 @@
 
             <label for="opcion">Opcion</label>
             <select name="opcion" id="opcion">
-                <option value="Comprar">Comprar</option>
+                <option value="Venta">Venta</option>
                 <option value="Alquiler">Alquiler</option>
-                <option value="Traspasa">Traspasa</option>
+                <option value="Traspaso">Traspaso</option>
             </select>
 
             <label for="colab">Coloborador</label>
@@ -110,6 +110,22 @@
                 <option value="AReformar">AReformar</option>
             </select>
 
+            <label for="TipoCalefacion">TipoCalefacion</label>
+            <select name="TipoCalefacion" id="TipoCalefacion">
+                <option value="Gas">Gas</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Electricidad">Electricidad</option>
+            </select>
+
+            <label for="TipoCalefacionAgua">TipoCalefacionAgua</label>
+            <select name="TipoCalefacionAgua" id="TipoCalefacionAgua">
+                <option value="Gas">Gas</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Electricidad">Electricidad</option>
+                <option value="EnergíaSolar">EnergíaSolar</option>
+                <option value="SistemasCombinados">SistemasCombinados</option>
+            </select>
+
             <label>Extras:</label>
             <div class="extraDiv">
             <div th:each="extra : ${T(com.example.Integra.models.enumeration.Extras).values()}">
@@ -117,6 +133,16 @@
                     <input type="checkbox" name="extras" th:value="${extra}" th:checked="${false}">
                     <span th:text="${extra.getDisplayName()}"></span>
                 </label><br>
+            </div>
+            </div>
+            <div class="visibility">
+            <label>Visibility</label>
+            <div class="toggle-button-cover">
+                <div class="button r" id="button-3">
+                    <input type="checkbox" class="checkbox" id="visibility">
+                    <div class="knobs"></div>
+                    <div class="layer"></div>
+                </div>
             </div>
             </div>
             <button type="submit">Introducir</button>
@@ -163,8 +189,8 @@
       </div>
       <div class="component1-container5">
           <div class="component1-container6">
-              <span class="component1-text11">Aviso Legal</span>
-              <span class="component1-text12">Política de Privacidad</span>
+              <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+              <span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span>
               <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
           </div>
       </div>
@@ -211,6 +237,7 @@ document.getElementById('casaForm').addEventListener('submit', function (event) 
     const extrasParam = JSON.stringify(selectedExtras);
     const encodedExtrasParam = encodeURIComponent(extrasParam);
     const url = `/private/Vivienda/create?extras=${encodedExtrasParam}`;
+    var visibilityCheckbox = document.getElementById('visibility');
   const formData = {
     title: document.getElementById('title').value,
     descripcion: document.getElementById('descripcion').value,
@@ -222,11 +249,16 @@ document.getElementById('casaForm').addEventListener('submit', function (event) 
     bano: parseFloat(document.getElementById('bano').value),
     habitaciones: parseFloat(document.getElementById('habitaciones').value),
     type: document.getElementById('type').value,
-    Plantas: document.getElementById('Plantas').value,
+    planta: document.getElementById('plantas').value,
     opcion: document.getElementById('opcion').value,
     estado: document.getElementById('estado').value,
     orientacion: document.getElementById('orienta').value,
-    coloborador: document.getElementById('colab').value
+    coloborador: document.getElementById('colab').value,
+    comunidad: document.getElementById('comunidad').value,
+    TipoCalefacion: document.getElementById('TipoCalefacion').value,
+    TipoCalefacionAgua: document.getElementById('TipoCalefacionAgua').value,
+    visibility: visibilityCheckbox.checked
+
   };
 
 

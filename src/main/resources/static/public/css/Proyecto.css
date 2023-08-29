@@ -709,3 +709,86 @@ grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
   border-radius: 20px;
 }
 
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .header h1 {
+        font-size: 36px;
+        padding: 10px 0;
+    }
+
+    .header nav {
+        text-align: center;
+    }
+
+    .header nav li {
+        display: block;
+        margin: 10px;
+    }
+
+    .logo {
+        width: 150px;
+        height: 100px;
+    }
+
+    .component-text, .component-text1 {
+        font-size: 24px;
+    }
+
+    .pre-menu img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .Vivienda-block, .terrenos-block {
+        width: 100%;
+        margin: 15px 0;
+    }
+
+    .Vivienda-block img, .terrenos-block img {
+        height: 150px;
+    }
+
+    .component1-container1, .component1-text, .component1-icon-group, .component1-links-container {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .component1-icon, .component1-icon2, .component1-icon4 {
+        width: 16px;
+        height: 16px;
+    }
+
+    .component1-container2, .component1-container3, .component1-container4, .component1-container5,
+    .component1-container6, .component1-container7 {
+        margin-right: 0;
+    }
+
+    .card-precio {
+        font-size: 14px;
+        top: 160px;
+        left: 110px;
+    }
+
+    .card-precio img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .fon {
+        display: none;
+    }
+
+    .popup-content {
+        width: 80%;
+    }
+
+    .form_main::before {
+        width: 200px;
+        height: 200px;
+        left: -120px;
+    }
+}

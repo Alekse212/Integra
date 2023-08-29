@@ -2,7 +2,7 @@ package com.example.Integra.models.enumeration;
 
 public enum TipoLocal {
     Nave("Nave"),
-    Locales("Locales");
+    Local("Local");
 
     private final String displayName;
 

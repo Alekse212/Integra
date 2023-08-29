@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,25 +32,37 @@ public class Controller {
     public String Principal(Model model) {
         List<Vivienda> vivienda = viviendaService.listVivienda();
         List<Vivienda> filteredList = vivienda.stream()
-                .sorted(Comparator.comparing(Vivienda::getFechadeintroduccion))
+                .sorted(Comparator.comparing(Vivienda::getFechadeintroduccion).reversed())
                 .limit(10)
+                .collect(Collectors.toList());
+        filteredList = filteredList.stream()
+                .filter(viviendas -> !viviendas.getVisibility())
                 .collect(Collectors.toList());
         List<Terrenos> terrenos = terrenosService.listTerrenos();
         List<Terrenos> filteredListT = terrenos.stream()
-                .sorted(Comparator.comparing(Terrenos::getDate))
+                .sorted(Comparator.comparing(Terrenos::getDate).reversed())
                 .limit(10)
+                .collect(Collectors.toList());
+        filteredListT = filteredListT.stream()
+                .filter(viviendas -> !viviendas.getVisibility())
                 .collect(Collectors.toList());
         List<Local> local = servicioLocal.listLocal();
         List<Local> filteredListL = local.stream()
                 .sorted(Comparator.comparing(Local::getFechadeintroduccion).reversed())
                 .limit(10)
                 .collect(Collectors.toList());
+        filteredListL = filteredListL.stream()
+                .filter(viviendas -> !viviendas.getVisibility())
+                .collect(Collectors.toList());
         model.addAttribute("local", filteredListL);
         model.addAttribute("vivienda", filteredList);
         model.addAttribute("terrenos", filteredListT);
         return "public/Principal";
     }
-
+    @GetMapping("/Robots.txt")
+    public String Principal() {
+        return "/static/Robots.txt";
+    }
     @GetMapping("/public/Contactos")
     public String showContactosPage() {
         return "public/Contactos";
@@ -115,7 +128,14 @@ public class Controller {
         return "private/Servicios";
     }
 
-
+    @GetMapping("/public/PoliticaPrivasidad")
+    public String showPoliticaPrivasidad() {
+        return "public/PoliticaPrivasidad";
+    }
+    @GetMapping("/public/CondicionesDeUso")
+    public String showCondicionesDeUso() {
+        return "public/CondicionesDeUso";
+    }
 
 }
 

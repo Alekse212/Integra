@@ -9,10 +9,9 @@ public enum Extras {
     Garaje("Garaje"),
     Luminoso("Luminoso"),
 
-    Calefaccion("Сalefaccion"),
+    Calefaccion("Calefaccion"),
     Jardin("Jardin"),
-    CalefaccionDeAgua("Calefacción de agua"),
-    RadianteSuelos("Rodeantes Suelos"),
+    RadianteSuelos("Suelos Radiantes"),
     Chimenea("Chimenea"),
     VistaAlCuidad("Vista al Cuidad");
 

@@ -44,13 +44,18 @@
                 </select>
                 <select name="opcion" id="opcion">
                     <option value="" disabled selected>Opcion</option>
-                    <option value="Comprar" selected>Comprar</option>
+                    <option value="Venta" selected>Venta</option>
                     <option value="Alquiler">Alquiler</option>
                 </select>
                 <select name="estado" id="estado">
                     <option value="" disabled selected>Estado</option>
                     <option value="" selected></option>
                     <option th:each="estado : ${T(com.example.Integra.models.enumeration.Estado).values()}" th:value="${estado}" th:text="${estado.getDisplayName()}"></option>
+                </select>
+                <select name="planta" id="planta">
+                    <option value="" disabled selected>Planta</option>
+                    <option value="" selected></option>
+                    <option th:each="planta : ${T(com.example.Integra.models.enumeration.Plantas).values()}" th:value="${planta}" th:text="${planta.getDisplayName()}"></option>
                 </select>
                 <button type="button" id="filterButton">Filtrar</button>
                 <button type="button" id="resetFiltersButton">Restablecer</button>
@@ -131,8 +136,8 @@
         </div>
         <div class="component1-container5">
             <div class="component1-container6">
-                <span class="component1-text11">Aviso Legal</span>
-                <span class="component1-text12">Política de Privacidad</span>
+                <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+                <span class="component1-text12"><span class="component1-text12"><a href="/public/PoliticaPrivasidad"><span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span></a></span></span>
                 <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
             </div>
         </div>
@@ -215,6 +220,7 @@
         document.querySelector('select[name="type"]').value = urlParams.get("type") || "";
         document.querySelector('select[name="opcion"]').value = urlParams.get("opcion") || "";
         document.querySelector('select[name="estado"]').value = urlParams.get("estado") || "";
+        document.querySelector('select[name="planta"]').value = urlParams.get("planta") || "";
 
     }
 
@@ -239,6 +245,8 @@
             const opcionFilter = opcionSelect.value;
             const estadoSelect = document.querySelector('select[name="estado"]');
             const estadoFilter = estadoSelect.value;
+            const plantaSelect = document.querySelector('select[name="planta"]');
+            const plantaFilter = plantaSelect.value;
             // Construir la URL con los filtros
             let filteredUrl = `/public/Vivienda?`;
             // Convertir los valores a números, verificar si es NaN y establecer valores predeterminados
@@ -292,7 +300,10 @@
                 filteredUrl += `&opcion=${encodeURIComponent(opcionFilter)}`;
             }
             if (estadoFilter !== '') {
-                filteredUrl += `&estado=${encodeURIComponent(opcionFilter)}`;
+                filteredUrl += `&estado=${encodeURIComponent(estadoFilter)}`;
+            }
+            if (plantaFilter !== '') {
+                filteredUrl += `&planta=${encodeURIComponent(plantaFilter)}`;
             }
 
             document.querySelector('input[name="cuidad"]').value = cuidadFilter;
@@ -306,7 +317,7 @@
             document.querySelector('select[name="type"]').value = typeFilter;
             document.querySelector('select[name="opcion"]').value = opcionFilter;
             document.querySelector('select[name="estado"]').value = estadoFilter;
-
+            document.querySelector('select[name="planta"]').value = plantaFilter;
 
             // Redirigir a la página con los filtros aplicados
             window.location.href = filteredUrl;

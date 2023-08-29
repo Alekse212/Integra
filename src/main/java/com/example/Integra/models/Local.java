@@ -29,6 +29,7 @@ public class Local {
     @Column(name = "descripcion", columnDefinition = "LONGTEXT")
     private String description;
     private Integer precio;
+    private String ref;
     private Integer tamano;
     private String cuidad;
     private String plano;
@@ -36,7 +37,7 @@ public class Local {
     private String previewImage;
     private Date fechadeintroduccion;
     private TipoLocal tipo;
-    private List<String> imageViviendas;
     private Integer bano;
     private Integer introduce;
+    private Boolean visibility;
 }

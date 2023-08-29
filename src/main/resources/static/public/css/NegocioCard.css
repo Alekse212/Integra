@@ -199,7 +199,8 @@ section {
 }
 
 .carousel .carousel__slide {
-    display: block;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -287,24 +288,24 @@ section {
 
 /* Стили для увеличенной картинки */
 #expandedImage {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1000;
-  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Чтобы изображение было поверх остального контента */
 }
 
 #expandedImage img {
-  display: block;
-  margin: auto;
-  max-width: 100%;
-  max-height: 100%;
-  padding: 20px;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
 }
+
 
 .titulo{
   margin: 20px auto;
@@ -428,8 +429,7 @@ section {
 }
 
 .variousamechanics {
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(0%, 450px);
+  -webkit-transform: translate(-50px, -50px);
   z-index: 2;
   position: absolute;
 }
@@ -926,3 +926,360 @@ button.done .kedeverything span {
 
 .ExtraDiv ul li:first-child {
     margin-top: 0;
+
+}
+.caract img{
+    width: 30px;
+    height:30px;
+    margin: 10px;
+}
+.caract{
+    display: grid;
+    justify-content: center;
+    margin: 20px;
+}
+
+.caract span{
+        color: #3c3c3cb5;
+        min-width: 300px;
+}
+
+
+.caract .cuidad{
+    display: flex;
+    align-items: center;
+    grid-column: 1;
+    border-bottom: solid 1px #3c3c3c5b;
+    padding-right: 200px;
+
+}
+.caract .tipo{
+                 display: flex;
+                     align-items: center;
+                     direction: rtl;
+                     border-bottom: solid 1px #3c3c3c5b;
+                     padding-left: 200px;
+             }
+.caract .type{
+    display: flex;
+    align-items: center;
+    direction: ltr;
+    border-bottom: solid 1px #3c3c3c5b;
+             }
+.caract .orientacion{
+display: flex;
+    align-items: center;
+    grid-column: 1;
+    border-bottom: solid 1px #3c3c3c5b;
+                    }
+.caract .opcion{
+                   display: flex;
+                       align-items: center;
+                       direction: rtl;
+                       border-bottom: solid 1px #3c3c3c5b;
+                       padding-left: 200px;
+               }
+.caract .Estado{
+display: flex;
+    align-items: center;
+    grid-column: 1;
+    border-bottom: solid 1px #3c3c3c5b;
+    padding-right: 200px;
+               }
+.caract .ibi{
+    display: flex;
+    align-items: center;
+    direction: rtl;
+    border-bottom: solid 1px #3c3c3c5b;
+    padding-left: 200px;
+            }
+
+.caract .ano{
+display: flex;
+    align-items: center;
+    grid-column: 1;
+    border-bottom: solid 1px #3c3c3c5b;
+    padding-right: 200px;
+            }
+
+.caract .planta{
+    display: flex;
+    align-items: center;
+    direction: rtl;
+    border-bottom: solid 1px #3c3c3c5b;
+    padding-left: 200px;
+            }
+
+
+#editButton{
+ width: 9em;
+ height: 3em;
+ border-radius: 30em;
+ font-size: 15px;
+ font-family: inherit;
+ border: none;
+ position: relative;
+ overflow: hidden;
+ z-index: 1;
+ box-shadow: 6px 6px 12px #c5c5c5,
+             -6px -6px 12px #ffffff;
+             align-items: center;
+                 justify-content: center;
+                 color: #3c3c3c56;
+}
+
+#editButton::before {
+ content: '';
+ width: 0;
+ height: 3em;
+ border-radius: 30em;
+ position: absolute;
+ top: 0;
+ left: 0;
+ background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
+ transition: .5s ease;
+ display: block;
+ z-index: -1;
+}
+
+#editButton:hover::before {
+ width: 9em;
+}
+
+
+
+#saveButton{
+width: 9em;
+ height: 3em;
+ border-radius: 30em;
+ font-size: 15px;
+ font-family: inherit;
+ border: none;
+ position: relative;
+ overflow: hidden;
+ z-index: 1;
+ box-shadow: 6px 6px 12px #c5c5c5,
+             -6px -6px 12px #ffffff;
+             align-items: center;
+                 justify-content: center;
+                 color: #3c3c3c56;
+}
+
+#saveButton::before {
+ content: '';
+ width: 0;
+ height: 3em;
+ border-radius: 30em;
+ position: absolute;
+ top: 0;
+ left: 0;
+ background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
+ transition: .5s ease;
+ display: block;
+ z-index: -1;
+}
+
+#saveButton:hover::before {
+ width: 9em;
+}
+
+
+.toggle-button-cover {
+    display: table-cell;
+    position: relative;
+    width: 100px;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.button-cover {
+  height: 100px;
+  margin: 20px;
+  background-color: #fff;
+  box-shadow: 0 10px 20px -8px #c5d6d6;
+  border-radius: 4px;
+}
+
+.button-cover:before {
+  counter-increment: button-counter;
+  content: counter(button-counter);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #d7e3e3;
+  font-size: 12px;
+  line-height: 1;
+  padding: 5px;
+}
+
+.button-cover,
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  position: relative;
+  top: 50%;
+  width: 90px;
+  height: 38px;
+  margin: -20px auto 0 auto;
+  overflow: hidden;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #524949;
+  transition: 1s ease all;
+  z-index: 1;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 12px;
+}
+
+#button-3 .knobs:before {
+  content: "ON";
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 23px;
+  height: 11px;
+  color: rgb(22, 21, 21);
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  background-color: rgb(240, 235, 233);
+  border-radius: 30%;
+  transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#button-3 .checkbox:active + .knobs:before {
+  width: 36px;
+  border-radius: 2px;
+}
+
+#button-3 .checkbox:checked:active + .knobs:before {
+  margin-left: -26px;
+}
+
+#button-3 .checkbox:checked + .knobs:before {
+  content: "OFF";
+  left: 50px;
+  background-color: #f44336;
+  color: white;
+}
+
+#button-3 .checkbox:checked ~ .layer {
+  background-color: #524949;
+}
+
+
+.visibility{
+    display: flex;
+        flex-direction: row;
+        align-items: center;
+}
+
+.visibility label{
+    color: #3c3c3cad;
+    margin-right: 20px;
+}
+
+
+.carousel__slide .delete-image-button {
+  width: 100px;
+      height: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      perspective: 800px;
+      border-bottom-left-radius: 15px;
+      background-color: #3c3c3c61;
+      border-top-right-radius: 15px;
+}
+
+.carousel__slide .delete-image-button__front,
+.delete-image-button__back {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #3498db;
+  border-radius: 5px;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: transform 0.5s ease;
+}
+
+.carousel__slide .delete-image-button__back {
+  background-color: #e74c3c;
+  transform: rotateY(180deg);
+}
+
+.carousel__slide .delete-image-button:hover .delete-image-button__front {
+  transform: rotateY(-180deg);
+}
+
+.carousel__slide .delete-image-button:hover .delete-image-button__back {
+  transform: rotateY(0);
+}
+
+#addImagesButton {
+  width: 100px;
+      height: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      perspective: 800px;
+      border-bottom-left-radius: 15px;
+      background-color: #3c3c3c61;
+      border-top-right-radius: 15px;
+}
+
+
+
+
+.custom-file-input {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-file-input:hover {
+  background-color: #2980b9;
+}

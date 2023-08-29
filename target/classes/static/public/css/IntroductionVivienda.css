@@ -13,14 +13,16 @@ h1 {
   margin: 0 auto;
 }
 #preview {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    align-items: baseline;
 }
 #preview img {
-  max-width: 200px;
-  max-height: 200px;
+  width: 200px;
+  height: 200px;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
@@ -163,17 +165,18 @@ main{
 /*footer*/
 
 .containerc {
- height: 300px;
- width: 300px;
- border-radius: 10px;
- box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: space-between;
- padding: 10px;
- gap: 5px;
- background-color: rgba(0, 110, 255, 0.041);
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 5px;
+    background-color: rgba(0, 110, 255, 0.041);
+    margin-left: 40%;
 }
 
 .headerc {
@@ -579,3 +582,71 @@ text-decoration: none;
   animation-delay: -0.1s;
 }
 
+.caract img{
+    width: 30px;
+    height:30px;
+    margin: 10px;
+}
+.caract{
+    display: grid;
+    justify-content: center;
+    margin: 20px;
+}
+
+.caract span{
+        color: #3c3c3cb5;
+        min-width: 300px;
+}
+
+
+.caract .cuidad{
+    display: flex;
+    align-items: center;
+    grid-column: 1;
+    border-bottom: solid 1px #3c3c3c5b;
+    padding-right: 200px;
+
+}
+.caract .tipo{
+                 display: flex;
+                     align-items: center;
+                     direction: rtl;
+                     border-bottom: solid 1px #3c3c3c5b;
+                     padding-left: 200px;
+             }
+.caract .orientacion{
+display: flex;
+    align-items: center;
+    grid-column: 1;
+    border-bottom: solid 1px #3c3c3c5b;
+    padding-right: 200px;
+                    }
+.caract .opcion{
+                   display: flex;
+                       align-items: center;
+                       direction: rtl;
+                       border-bottom: solid 1px #3c3c3c5b;
+                       padding-left: 200px;
+               }
+.caract .Estado{
+display: flex;
+    align-items: center;
+    grid-column: 1;
+    border-bottom: solid 1px #3c3c3c5b;
+    padding-right: 200px;
+               }
+.caract .ibi{
+    display: flex;
+    align-items: center;
+    direction: rtl;
+    border-bottom: solid 1px #3c3c3c5b;
+    padding-left: 200px;
+            }
+
+.caract .ano{
+display: flex;
+    align-items: center;
+    grid-column: 1;
+    border-bottom: solid 1px #3c3c3c5b;
+    padding-right: 200px;
+            }

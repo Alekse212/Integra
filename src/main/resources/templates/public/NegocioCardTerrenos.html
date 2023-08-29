@@ -27,21 +27,20 @@
         </nav>
     </header>
     <main>
-
+        <div class="property-card">
             <div class="carousel">
-                <div th:each="image : ${terrenos.imageViviendas}" class="carousel__slide">
-                    <img th:src="@{'/public/imagesVivienda/' + ${image}}" alt="">
+                <div th:each="image : ${terrenosImages}" class="carousel__slide">
+                    <img th:src="@{'/public/imagesVivienda/' + ${image.nameImage}}" alt="">
                 </div>
             </div>
         </div>
-    
         
     
     <div class="info-card">
         <div class="left-card">
             <div class="name">
-                <span class="refn">REF:</span>
-                <p class="ref" th:text="${terrenos.id}">100</p>
+                <span class="refn">REF: <span class="ref" th:text="${terrenos.id}">100</span></span>
+
                 <h2 th:text="${terrenos.title}">Apartamento</h2>
                 </div>
             <div class="wrapper">
@@ -96,12 +95,17 @@
             </p>
         </div>
         </div>
+        <div class="caract">
+            <div class="cuidad"><img src="../../static/public/images/image/city.png" alt=""> <span class="cuidadspan"th:text="${terrenos.cuidad}" id="cuidad"></span></div>
+            <div class="ibi"><img src="../../static/public/images/image/ibi.png" alt=""> <span th:text="${terrenos.ibi}" id="ibi"></span></span></div>
+            <div class="tipo"><img src="../../static/public/images/image/type.png" alt="" > <span th:text="${terrenos.urbanizable}"></span></span></div>
+        </div>
     </main>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
-    $(document).ready(function(){
+        $(document).ready(function(){
         $('.carousel').slick({
             autoplay: true,
             arrows: true,
@@ -112,21 +116,35 @@
             slidesToScroll: 1
         });
     });
-    // Обработчик события на клик по изображению в карусели
 $('.carousel__slide img').click(function() {
     const imageUrl = $(this).attr('src');
 
-    // Создаем элемент для увеличенной картинки
     const expandedImage = $('<div id="expandedImage"><img src="' + imageUrl + '"></div>');
 
-    // Добавляем элемент в body
     $('body').append(expandedImage);
 
-    // Обработчик события на клик по увеличенной картинке для закрытия
     expandedImage.click(function() {
         $(this).remove();
     });
 });
+
+    document.addEventListener("DOMContentLoaded", function() {
+    var priceElements = document.querySelectorAll(".precio");
+    priceElements.forEach(function(element) {
+        var price = parseFloat(element.textContent);
+        if (!isNaN(price)) {
+            var formattedPrice = price.toLocaleString("en-US", {
+                style: "currency",
+                currency: "EUR",
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+            element.textContent = formattedPrice;
+        }
+    });
+});
+ 
+
 
 </script>
 <footer class="component1-footer">
@@ -169,8 +187,8 @@ $('.carousel__slide img').click(function() {
         </div>
         <div class="component1-container5">
             <div class="component1-container6">
-                <span class="component1-text11">Aviso Legal</span>
-                <span class="component1-text12">Política de Privacidad</span>
+                <span class="component1-text11"><a href="/public/CondicionesDeUso">Condiciones de Uso</a></span>
+                <span class="component1-text12"><a href="/public/PoliticaPrivasidad">Política de Privacidad</a></span>
                 <span class="component1-text13"><a href="#" onclick="openLoginPopup()">Acceso empleados</a></span>
             </div>
         </div>
